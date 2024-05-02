@@ -1,0 +1,29 @@
+class Solution {
+    // 定义一个类
+
+public:
+    // 公有成员函数，外部可以直接调用
+
+    vector<int> twoSum(vector<int>& nums, int target) {
+        // 定义一个成员函数 twoSum，它接受一个整数数组和一个整数目标值，返回一个整数数组
+
+        unordered_map<int, int> hashtable;
+        // 创建一个哈希表，用于存储数组中的数及其对应的索引
+
+        for (int i = 0; i < nums.size(); ++i) {
+            // 遍历数组
+
+            auto it = hashtable.find(target - nums[i]);
+            // 在哈希表中查找目标值减去当前数的值对应的索引
+
+            if (it != hashtable.end()) {
+                // 如果找到了，返回当前数的索引和找到的索引
+                return {it->second, i};
+            }
+            // 如果没有找到，将当前数和其索引存入哈希表
+            hashtable[nums[i]] = i;
+        }
+        // 如果遍历完数组都没有找到，返回一个空数组
+        return {};
+    }
+};
